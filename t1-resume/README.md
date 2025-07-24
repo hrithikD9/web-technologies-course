@@ -8,7 +8,7 @@ This repository contains projects and assignments for the Web Technologies cours
 
 A professional, responsive resume website built with HTML and CSS.
 
-**🌐 [Live Preview](https://your-live-preview-link-here.com)**
+**🌐 [Live Preview](https://hrithik-dev-nath-resume.netlify.app/)**
 
 #### 📋 Project Overview
 
