@@ -1,0 +1,195 @@
+/* Reset some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #e9ecef;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.resume-container {
+  max-width: 850px;
+  width: 100%;
+  background-color: white;
+  padding: 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 2.4rem;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+h2 {
+  color: #2980b9;
+  margin-top: 25px;
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+  position: relative;
+}
+
+h3 {
+  color: #3498db;
+  margin-bottom: 5px;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, #3498db, #f5f5f5);
+  margin-bottom: 18px;
+  margin-top: 5px;
+}
+
+.contact-info {
+  text-align: center;
+  margin-bottom: 25px;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.contact-info a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.contact-info a:hover {
+  color: #2672b1;
+  text-decoration: underline;
+}
+
+.degree-info, .club-details, .ca-details, .oc-details, .le-details, .project-details {
+  margin-bottom: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  background-color: rgba(248, 249, 250, 0.4);
+  padding: 15px;
+  border-radius: 5px;
+  border-left: 3px solid #3498db;
+}
+
+.university-name, .club-name, .ca-name, .oc-name, .le-name, .project-name {
+  width: 70%;
+  padding-right: 15px;
+}
+
+.university-location-info, .club-location-info, .ca-location-info, .oc-location-info, .le-location-info {
+  width: 30%;
+  text-align: right;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.university-duration-info, .club-duration-info, .ca-duration-info, .oc-duration-info, .le-duration-info {
+  width: 30%;
+  text-align: right;
+  font-weight: 600;
+  color: #2980b9;
+}
+
+.degree-name, .club-position, .ca-position, .oc-position, .le-position {
+  color: #555;
+  font-style: italic;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.degree-details, .club-details ul, .ca-details ul, .oc-details ul, .le-details ul {
+  width: 100%;
+  margin-top: 15px;
+}
+
+ul {
+  padding-left: 25px;
+  list-style-type: square;
+}
+
+li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+.project-link {
+  margin-top: 8px;
+}
+
+.project-link a {
+  color: #3498db;
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: inline-block;
+  font-weight: 500;
+  transition: all 0.2s;
+  background-color: rgba(52, 152, 219, 0.1);
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.project-link a:hover {
+  text-decoration: underline;
+  background-color: rgba(52, 152, 219, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Print styles for a better-looking printed resume */
+@media print {
+  body {
+    background-color: white;
+    padding: 0;
+  }
+  
+  .resume-container {
+    box-shadow: none;
+    padding: 0;
+    max-width: 100%;
+  }
+}
+
+/* Add some responsive design */
+@media (max-width: 600px) {
+  body {
+    padding: 15px;
+  }
+  
+  .resume-container {
+    padding: 20px;
+  }
+  
+  .university-name, .club-name, .ca-name, .oc-name, .le-name, .project-name,
+  .university-location-info, .club-location-info, .ca-location-info, .oc-location-info, .le-location-info,
+  .university-duration-info, .club-duration-info, .ca-duration-info, .oc-duration-info, .le-duration-info {
+    width: 100%;
+    text-align: left;
+    padding-right: 0;
+  }
+  
+  .university-location-info, .club-location-info, .ca-location-info, .oc-location-info, .le-location-info,
+  .university-duration-info, .club-duration-info, .ca-duration-info, .oc-duration-info, .le-duration-info {
+    margin-top: 5px;
+  }
+}
