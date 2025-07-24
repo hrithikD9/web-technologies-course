@@ -133,27 +133,132 @@ li:last-child {
   margin-bottom: 0;
 }
 
-.project-link {
-  margin-top: 8px;
+.project-details {
+  margin-bottom: 25px;
+  border-left: 4px solid #e74c3c;
+  background: linear-gradient(135deg, rgba(231, 76, 60, 0.05), rgba(248, 249, 250, 0.8));
+}
+
+.project-name {
+  width: 70%;
+  padding-right: 15px;
+}
+
+.project-duration-info {
+  width: 30%;
+  text-align: right;
+  font-weight: 600;
+  color: #e74c3c;
+  font-size: 0.9rem;
+}
+
+.project-tech {
+  margin: 8px 0;
+}
+
+.tech-stack {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+}
+
+.project-description {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.project-description ul {
+  padding-left: 25px;
+  list-style-type: none;
+}
+
+.project-description li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 20px;
+}
+
+.project-description li:before {
+  content: "▶";
+  color: #e74c3c;
+  font-size: 0.8rem;
+  position: absolute;
+  left: 0;
+  top: 2px;
 }
 
 .project-link a {
-  color: #3498db;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 6px;
   text-decoration: none;
-  margin-bottom: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(231, 76, 60, 0.3);
   display: inline-block;
-  font-weight: 500;
-  transition: all 0.2s;
-  background-color: rgba(52, 152, 219, 0.1);
-  padding: 5px 10px;
-  border-radius: 4px;
+  margin-top: 5px;
 }
 
 .project-link a:hover {
-  text-decoration: underline;
-  background-color: rgba(52, 152, 219, 0.2);
   transform: translateY(-2px);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 12px rgba(231, 76, 60, 0.4);
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+}
+
+/* Skills Section Styling */
+.skills-section {
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.05), rgba(248, 249, 250, 0.8));
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #9b59b6;
+}
+
+.skill-category {
+  margin-bottom: 20px;
+}
+
+.skill-category:last-child {
+  margin-bottom: 0;
+}
+
+.skill-category h3 {
+  color: #8e44ad;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  border-bottom: 2px solid rgba(142, 68, 173, 0.2);
+  padding-bottom: 5px;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 4px rgba(155, 89, 182, 0.3);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.skill-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(155, 89, 182, 0.4);
+  background: linear-gradient(135deg, #8e44ad, #9b59b6);
 }
 
 /* Print styles for a better-looking printed resume */
@@ -191,5 +296,34 @@ li:last-child {
   .university-location-info, .club-location-info, .ca-location-info, .oc-location-info, .le-location-info,
   .university-duration-info, .club-duration-info, .ca-duration-info, .oc-duration-info, .le-duration-info {
     margin-top: 5px;
+  }
+  
+  .project-name, .project-duration-info {
+    width: 100%;
+    text-align: left;
+    padding-right: 0;
+  }
+  
+  .project-duration-info {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .tech-stack {
+    font-size: 0.8rem;
+    padding: 3px 10px;
+  }
+  
+  .skills-section {
+    padding: 15px;
+  }
+  
+  .skill-tag {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+  }
+  
+  .skills-list {
+    gap: 6px;
   }
 }
