@@ -2,8 +2,6 @@
 
 A web-based application that helps students track their academic progress, including completed courses, remaining courses, and CGPA calculation.
 
-![CGPA Progress Tracker Screenshot](screenshot-placeholder.png)
-
 ## Features
 
 - **Overall Progress Visualization**: Visual progress bar showing percentage of completed credits
