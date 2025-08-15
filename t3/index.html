@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .todo-input-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        #todo-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+
+        #add-button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        #add-button:hover {
+            background-color: #2980b9;
+        }
+
+        .todo-container {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .todo-item:last-child {
+            border-bottom: none;
+        }
+
+        .todo-text {
+            flex: 1;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .todo-actions {
+            display: flex;
+        }
+
+        .todo-actions button {
+            margin-left: 10px;
+            padding: 6px 10px;
+            background-color: transparent;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .complete-btn {
+            color: #27ae60;
+        }
+
+        .complete-btn:hover {
+            background-color: #27ae60;
+            color: white;
+            border-color: #27ae60;
+        }
+
+        .delete-btn {
+            color: #e74c3c;
+        }
+
+        .delete-btn:hover {
+            background-color: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+
+        .empty-list {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+        }
+
+        .stats {
+            margin-top: 20px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My TODO App</h1>
+        
+        <div class="todo-input-container">
+            <input type="text" id="todo-input" placeholder="Add a new task...">
+            <button id="add-button">Add</button>
+        </div>
+        
+        <div class="todo-container" id="todo-list">
+            <!-- Todo items will be added here dynamically -->
+            <div class="empty-list">No tasks yet. Add a task to get started!</div>
+        </div>
+        
+        <div class="stats" id="stats">
+            Total: 0 | Completed: 0
+        </div>
+    </div>
+
+    <script>
+        const todoInput = document.getElementById('todo-input');
+        const addButton = document.getElementById('add-button');
+        const todoList = document.getElementById('todo-list');
+        const statsElement = document.getElementById('stats');
+        
+        let todos = [];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTodos();
+            renderTodos();
+            updateStats();
+        });
+        
+        addButton.addEventListener('click', addTodo);
+        
+        todoInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addTodo();
+            }
+        });
+        
+        function addTodo() {
+            const todoText = todoInput.value.trim();
+            
+            if (todoText === '') {
+                return;
+            }
+            
+            const todo = {
+                id: Date.now(),
+                text: todoText,
+                completed: false
+            };
+            
+            todos.push(todo);
+            
+            todoInput.value = '';
+            
+            saveTodos();
+            
+            renderTodos();
+            updateStats();
+            
+            todoInput.focus();
+        }
+        
+        function toggleComplete(id) {
+            todos = todos.map(todo => {
+                if (todo.id === id) {
+                    return { ...todo, completed: !todo.completed };
+                }
+                return todo;
+            });
+            
+            saveTodos();
+            renderTodos();
+            updateStats();
+        }
+        
+        // Function to delete a todo
+        function deleteTodo(id) {
+            todos = todos.filter(todo => todo.id !== id);
+            
+            saveTodos();
+            renderTodos();
+            updateStats();
+        }
+        
+        // Function to save todos to localStorage
+        function saveTodos() {
+            localStorage.setItem('todos', JSON.stringify(todos));
+        }
+        
+        // Function to load todos from localStorage
+        function loadTodos() {
+            const savedTodos = localStorage.getItem('todos');
+            if (savedTodos) {
+                todos = JSON.parse(savedTodos);
+            }
+        }
+        
+        // Function to render todos to DOM
+        function renderTodos() {
+            if (todos.length === 0) {
+                todoList.innerHTML = '<div class="empty-list">No tasks yet. Add a task to get started!</div>';
+                return;
+            }
+            
+            // Clear current list
+            todoList.innerHTML = '';
+            
+            // Add each todo to the list
+            todos.forEach(todo => {
+                const todoItem = document.createElement('div');
+                todoItem.classList.add('todo-item');
+                
+                const todoText = document.createElement('span');
+                todoText.classList.add('todo-text');
+                if (todo.completed) {
+                    todoText.classList.add('completed');
+                }
+                todoText.textContent = todo.text;
+                
+                const todoActions = document.createElement('div');
+                todoActions.classList.add('todo-actions');
+                
+                const completeButton = document.createElement('button');
+                completeButton.classList.add('complete-btn');
+                completeButton.textContent = todo.completed ? 'Undo' : 'Complete';
+                completeButton.onclick = () => toggleComplete(todo.id);
+                
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('delete-btn');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => deleteTodo(todo.id);
+                
+                todoActions.appendChild(completeButton);
+                todoActions.appendChild(deleteButton);
+                
+                todoItem.appendChild(todoText);
+                todoItem.appendChild(todoActions);
+                
+                todoList.appendChild(todoItem);
+            });
+        }
+        
+        // Function to update statistics
+        function updateStats() {
+            const total = todos.length;
+            const completed = todos.filter(todo => todo.completed).length;
+            statsElement.textContent = `Total: ${total} | Completed: ${completed}`;
+        }
+    </script>
+</body>
+</html>
